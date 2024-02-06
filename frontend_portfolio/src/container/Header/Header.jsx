@@ -1,87 +1,71 @@
-import React from 'react'
-import './Header.scss'
-import { images } from '../../constants' 
-import {motion} from 'framer-motion'
+import React from 'react';
+import { motion } from 'framer-motion';
+import { images } from '../../constants';
+import './Header.scss';
 
-const scaleVariant = {
+const scaleVariants = {
   whileInView: {
     scale: [0, 1],
     opacity: [0, 1],
     transition: {
       duration: 1,
-      ease: 'easeInOut'
-    }
-  }
-}
-
-const linksAndIcons = [
-  { icon: images.resume_icon, url: '../assets/michael_resume.pdf' },
-  { icon: images.github_icon, url: 'https://github.com/michaelyoussef396' },
-  { icon: images.linkedin_icon, url: 'https://www.linkedin.com/in/michael-youssef-93625327a/' },
-  { icon: images.medium_icon, url: 'https://medium.com/@michaelyoussef396' },
-];
-
+      ease: 'easeInOut',
+    },
+  },
+};
 
 const Header = () => {
-  
   return (
-    <div id='home' className='app__header app__flex'>
-      <motion.div
-      whileInView={{x: [-100, 0], opacity: [0,1] }}
-      transition={{duration: 0.5}}
-      className='app__header-info'
+    <div id='home' className="app__header app__flex">
+    <motion.div
+      whileInView={{ x: [-100, 0], opacity: [0, 1] }}
+      transition={{ duration: 0.5 }}
+      className="app__header-info"
       >
-        <div className='app__header-badge'>
-          <div className='badge-cpm app__flex'>
-            <span>👋</span>
-            <div style={{marginLeft: 20}}>
-              <p className='p-text'>Hello, I am</p>
-              <h1 className='head-text'>Michael</h1>
-            </div>
-          </div>
-
-          <div className='tag-cmp app__flex'>
-            <p>Full-Stack Developer</p>
-            <p>Web Developer</p>
+      <div className="app__header-badge">
+        <div className="badge-cmp app__flex">
+          <span>👋</span>
+          <div style={{ marginLeft: 20 }}>
+            <p className="p-text">Hello, I am</p>
+            <h1 className="head-text">Michael</h1>
           </div>
         </div>
-      </motion.div>
 
-      <motion.div
-      whileInView={{opacity: [0,1] }}
-      transition={{duration: 0.5, delayChildren: 0.5}}
-      className='app__header-img'
+        <div className="tag-cmp app__flex">
+          <p className="p-text">Full-Stack Develope</p>
+          <p className="p-text">Web Developer</p>
+        </div>
+      </div>
+    </motion.div>
+
+    <motion.div
+      whileInView={{ opacity: [0, 1] }}
+      transition={{ duration: 0.5, delayChildren: 0.5 }}
+      className="app__header-img"
       >
-        {linksAndIcons.map((linkAndIcon, index) => (
-          <div className='circle-cmp app__flex' key={`icon-${index}`}>
-            <a href={linkAndIcon.url} target="_blank" rel="noopener noreferrer">
-              <img src={linkAndIcon.icon} alt='icon' />
-            </a>
-          </div>
-        ))}
-        <motion.img
-        whileInView={{scaleX: [0,1] }}
-        transition={{duration: 1, ease: 'easeInOut'}}
-        className='overlay circle'
+      <img  src={images.profile} alt="profile_picture" />
+      <motion.img
+        whileInView={{ scale: [0, 1] }}
+        transition={{ duration: 1, ease: 'easeInOut' }}
         src={images.circle}
-        alt='background-circle'
-        />
+        alt="profile_circle"
+        className="overlay_circle"
+      />
+    </motion.div>
 
-      </motion.div>
-
-      <motion.div
-      variant={scaleVariant}
-      whileInView={scaleVariant.whileInView}
-      className='app__header-circles'
+    <motion.div
+      variants={scaleVariants}
+      whileInView={scaleVariants.whileInView}
+      className="app__header-circles"
       >
-        {[images.sass, images.python, images.react].map((circle, index) => (
-          <div className='circle-cmp app__flex' key={`circle-${index}`}>
-            <img src={circle} alt='circle' />
-          </div>
-        ))}
-      </motion.div>
-    </div>
-  )
-}
+      {[images.react, images.sass, images.python].map((circle, index) => (
+        <div className="circle-cmp app__flex" key={`circle-${index}`}>
+          <img src={circle} alt="profile_bg" />
+        </div>
+      ))}
+    </motion.div>
+  </div>
+)
+};
 
-export default Header
+export default Header;
