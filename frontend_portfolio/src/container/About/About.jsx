@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import './About.scss'
 import {motion} from 'framer-motion';
-import { images } from '../../constants';
-import {urlFor, client} from '../../client';
-
-
-
+import { AppWrap } from '../../wrapper';
+import {client, urlFor} from '../../client.js'
 const About = () => {
-  const [about, setAbout] = useState([]);
-
+  const [abouts, setAbout] = useState([]);
   useEffect(() => {
-    const query = '*[_type == "abouts';
+    const query = '*[_type == "abouts"]';
     client.fetch(query)
     .then((data) => setAbout(data))
   }, []);
@@ -28,7 +24,7 @@ const About = () => {
           className='app__profile-item'
           key={about.title + index}
           >
-            <img src={about.imgURL} alt={about.title}/>
+            <img src={urlFor(about.imgUrl)} alt={about.title}/>
             <h2 className='bold-text' style={{marginTop: 20}}>{about.title}</h2>
             <p className='p-text' style={{marginTop: 10}}>{about.description}</p>
           </motion.div>
@@ -38,4 +34,4 @@ const About = () => {
   )
 }
 
-export default About
+export default AppWrap(About, 'about')
