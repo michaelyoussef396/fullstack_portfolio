@@ -14,6 +14,8 @@ import about1 from '../assets/about1.png'
 import about2 from '../assets/about2.png'
 import about3 from '../assets/about3.png'
 import about4 from '../assets/about4.png'
+import email from '../assets/email.png'
+import mobile from '../assets/mobile.png'
 
 const images = {
     michael,
@@ -31,7 +33,9 @@ const images = {
     about1,
     about2,
     about3,
-    about4
+    about4,
+    email,
+    mobile
 }
 
 export default images;
