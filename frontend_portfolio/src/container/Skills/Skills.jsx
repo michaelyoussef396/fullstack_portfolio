@@ -29,11 +29,11 @@ const Skills = () => {
 
       <div className='app__skills-container'>
       <motion.div className='app__skills-list'>
-        {skills.map((skill) => ( // Changed from Skills to skills
+        {skills.map((skill) => (
           <motion.div
             whileInView={{opacity: [0, 1]}}
             transition={{duration: 0.5}}
-            className='app__skills-item app__flex' // Corrected class name from 'app__skils-item' to 'app__skills-item'
+            className='app__skills-item app__flex'
             key={skill.name}
           >
             <div className='app__flex' style={{backgroundColor: skill.bgColor}}>
