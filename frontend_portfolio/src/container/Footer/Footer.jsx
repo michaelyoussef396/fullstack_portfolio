@@ -5,6 +5,10 @@ import { AppWrap, MotionWrap } from '../../wrapper'
 import { client } from '../../client'
 
 const Footer = () => {
+  const [formData, setFormData] = useState({name: '', email: '', message: ''});
+  const [isFormSubmited, setIsFormSubmited] = useState(false);
+  const [loading, setLoading] = useState(false);
+
   return (
     <>
       <h2 className='head-text'>Take a coffe & chat with me</h2>
@@ -21,7 +25,25 @@ const Footer = () => {
         </div>
       </div>
 
-      
+      <div className='app__footer-form  app__flex'>
+        <div className='app__flex'>
+          <input className='p-text' type='text' name='name' placeholder='Your Name' value={name} onChange={handleChangeinput} />
+        </div>
+        <div className='app__flex'>
+          <input className='p-text' type='email' name='email' placeholder='Your Email' value={email} onChange={handleChangeinput} />
+        </div>
+
+        <div>
+          <textarea
+          className='p-text'
+          placeholder='Your message'
+          value={message}
+          name={message}
+          onChange={handleChangeinput}
+          />
+        </div>
+        <button type='button' className='p-text' onClick={handleSubmit} >Send Message</button>
+      </div>
     </>
   )
 }
