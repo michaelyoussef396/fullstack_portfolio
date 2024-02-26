@@ -9,23 +9,27 @@ const Footer = () => {
   const [isFormSubmited, setIsFormSubmited] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const {name, email, message} = FormData;
+  const {name, email, message} = formData;
 
   const handleInputChange = (e) => {
-    const {name, value} = e.target;
-    setFormData({...FormData, [name]: value})
-  }
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
   const handleSubmit = () => {
+    if (!formData.name || !formData.email || !formData.message) {
+      alert('Please fill in all fields.');
+      return;
+    }
     setLoading(true);
-
+  
     const contact = {
       _type: 'contact',
-      name: name,
-      email: email,
-      message: message,
-    }
-
+      name: formData.name,
+      email: formData.email,
+      message: formData.message,
+    };
+  
     client.create(contact)
     .then(()=>{
       setLoading(false)
@@ -51,10 +55,10 @@ const Footer = () => {
       {!isFormSubmited ? 
       <div className='app__footer-form  app__flex'>
         <div className='app__flex'>
-          <input className='p-text' type='text' name='name' placeholder='Your Name' value={name} onChange={handleInputChange} />
+          <input className='p-text' type='text' name='name' placeholder='Your Name' value={formData.name} onChange={handleInputChange} />
         </div>
         <div className='app__flex'>
-          <input className='p-text' type='email' name='email' placeholder='Your Email' value={email} onChange={handleInputChange} />
+          <input className='p-text' type='email' name='email' placeholder='Your Email' value={formData.email} onChange={handleInputChange} />
         </div>
 
         <div>
